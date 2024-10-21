@@ -3,25 +3,96 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* @media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
+} */
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+.font-montserrat-thin {
+    font-family: var(--font-montserrat-thin);
+}
+
+.font-montserrat-thin-italic {
+    font-family: var(--font-montserrat-thin-italic);
+}
+
+.font-montserrat-extra-light {
+    font-family: var(--font-montserrat-extra-light);
+}
+
+.font-montserrat-extra-light-italic {
+    font-family: var(--font-montserrat-extra-light-italic);
+}
+
+.font-montserrat-light {
+    font-family: var(--font-montserrat-light);
+}
+
+.font-montserrat-light-italic {
+    font-family: var(--font-montserrat-light-italic);
+}
+
+.font-montserrat-regular {
+    font-family: var(--font-montserrat-regular);
+}
+
+.font-montserrat-italic {
+    font-family: var(--font-montserrat-italic);
+}
+
+.font-montserrat-medium {
+    font-family: var(--font-montserrat-medium);
+}
+
+.font-montserrat-medium-italic {
+    font-family: var(--font-montserrat-medium-italic);
+}
+
+.font-montserrat-semi-bold {
+    font-family: var(--font-montserrat-semi-bold);
+}
+
+.font-montserrat-semi-bold-italic {
+    font-family: var(--font-montserrat-semi-bold-italic);
+}
+
+.font-montserrat-bold {
+    font-family: var(--font-montserrat-bold);
+}
+
+.font-montserrat-bold-italic {
+    font-family: var(--font-montserrat-bold-italic);
+}
+
+.font-montserrat-extra-bold {
+    font-family: var(--font-montserrat-extra-bold);
+}
+
+.font-montserrat-extra-bold-italic {
+    font-family: var(--font-montserrat-extra-bold-italic);
+}
+
+.font-montserrat-black {
+    font-family: var(--font-montserrat-black);
+}
+
+.font-montserrat-black-italic {
+    font-family: var(--font-montserrat-black-italic);
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
 }
