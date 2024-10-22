@@ -76,7 +76,7 @@ const staticProducts = [
     },
 ];
 
-export default function mainPage({}) {
+export default async function mainPage({}) {
     return (
         <main className="flex flex-col justify-center items-center gap-14 content-between mb-8">
             <header>

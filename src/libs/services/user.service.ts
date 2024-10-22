@@ -8,7 +8,7 @@ import {
 
 export default class UserServices {
     static backUrl: string =
-        process.env.BACK_URL ?? "http://localhost:8081/api/v1";
+        process.env.API_HOST ?? "http://localhost:8081/api/v1";
     static path: string = "/users";
 
     static async signin(loginData: signin): Promise<signinResponse> {
@@ -41,6 +41,24 @@ export default class UserServices {
                 registerData
             );
             if (result.status !== 201 || !result.data.success) {
+                throw new Error(result.data.payload.description);
+            }
+            return result.data;
+        } catch (error) {
+            if (error instanceof Error) {
+                throw new Error(error.message);
+            } else {
+                throw new Error("An unexpected error occurred");
+            }
+        }
+    }
+
+    static async getUserByEmail(email: string): Promise<signinResponse> {
+        try {
+            const userPath = `${this.backUrl}${this.path}?email=${email}`;
+            const result: AxiosResponse = await axios.get(userPath);
+
+            if (result.status !== 200 || !result.data.success) {
                 throw new Error(result.data.payload.description);
             }
             return result.data;

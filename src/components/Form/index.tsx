@@ -10,7 +10,7 @@ const Form: React.FC<FormProps> = ({ formConstructor }) => {
     const [showPass, setShowPass] = useState<boolean>(false);
     const [formData, setFormData] = useState<{ [key: string]: string }>({});
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
-    const router2 = useRouter();
+    const navigationRouter = useRouter();
 
     const router = usePathname();
     const pageName = router.split("/")[1];
@@ -40,7 +40,7 @@ const Form: React.FC<FormProps> = ({ formConstructor }) => {
                                 setErrors,
                                 formData,
                                 pageName,
-                                router2
+                                navigationRouter
                             )
                         }
                     >
@@ -123,6 +123,11 @@ const Form: React.FC<FormProps> = ({ formConstructor }) => {
                             text="Forgot password?"
                         />
                         <ButtonComponent type="submit" text="Login" />
+                        {errors.general && (
+                            <div className="text-red-500 text-center w-full m-2">
+                                {errors.general}
+                            </div>
+                        )}
                     </form>
                 </>
             )}

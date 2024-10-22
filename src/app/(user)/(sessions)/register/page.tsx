@@ -1,6 +1,8 @@
 import React from "react";
 import Form from "@/components/Form";
 import Link from "next/link";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 const formConstructor = {
     title: {
@@ -49,7 +51,11 @@ const formConstructor = {
     ],
 };
 
-export default function Page() {
+export default async function Page() {
+    const session = await auth();
+    if (session) {
+        redirect("/profile");
+    }
     return (
         <section className="w-full h-full bg-gray-100 flex flex-wrap justify-center content-center ">
             <article className="w-4/5 min-h-1/2 h-auto bg-white shadow-md border-black rounded-lg p-8">

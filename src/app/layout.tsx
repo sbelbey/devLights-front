@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 
 const MontserratThin = localFont({
     src: "../fonts/Montserrat/static/Montserrat-Thin.ttf",
@@ -115,17 +117,18 @@ export const metadata: Metadata = {
     description: "Ecommerce",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const session = await auth();
     return (
         <html lang="en">
             <body
                 className={`${MontserratThin.variable} ${MontserratThinItalic.variable}  ${MontserratExtraLight.variable} ${MontserratExtraLightItalic.variable} ${MontserratLight.variable} ${MontserratLightItalic.variable} ${MontserratRegular.variable} ${MontserratItalic.variable} ${MontserratMedium.variable} ${MontserratMediumItalic.variable} ${MontserratSemiBold.variable} ${MontserratSemiBoldItalic.variable} ${MontserratBold.variable} ${MontserratBoldItalic.variable} ${MontserratExtraBold.variable} ${MontserratExtraBoldItalic.variable} ${MontserratBlack.variable} ${MontserratBlackItalic.variable} antialiased `}
             >
-                {children}
+                <SessionProvider session={session}>{children}</SessionProvider>
             </body>
         </html>
     );

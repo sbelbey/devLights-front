@@ -8,8 +8,9 @@ import {
 import validateFormData from "@/libs/validatFormData";
 import schemas from "./schemas";
 import UserServices from "@/libs/services/user.service";
-import { signin, Register } from "@/Interfaces/user.interface";
+import { Register } from "@/Interfaces/user.interface";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { signIn } from "next-auth/react";
 
 export function handleChange(
     e: ChangeEvent<HTMLInputElement>,
@@ -60,16 +61,16 @@ export async function handleSubmit(
     if (valid) {
         setErrors({});
         if (pageName === "signin") {
-            const loginData: signin = {
+            const loginData = {
                 email: formData.email,
                 password: formData.password,
+                redirect: false,
             };
-            try {
-                const result = await UserServices.signin(loginData);
-                console.log(result.payload);
+            const result = await signIn("credentials", loginData);
+            if (result?.error) {
+                setErrors({ general: "Invalid credentials" });
+            } else {
                 router.push("/");
-            } catch (error) {
-                console.error(error);
             }
         } else if (pageName === "register") {
             const registerData: Register = {
