@@ -1,66 +1,62 @@
+import { Product } from "@/Interfaces/Product.interface";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 interface ProductCardProps {
-    product: {
-        id: number;
-        image: string;
-        title: string;
-        description: string;
-        price: number;
-        discount: number;
-        stars: number;
-        votes: number;
-    };
+    product: Product;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
     product,
 }: ProductCardProps) => {
+    const discount = Math.floor(Math.random() * (35 - 3 + 1)) + 3;
+    const stars = Math.floor(Math.random() * 11) / 2;
+    const votes = Math.floor(Math.random() * 100000);
     return (
         <Link
             href={`/product/${product.id}`}
             className="hover:shadow-lg w-full"
         >
-            <article className="flex flex-col items-start justify-between rounded-sm hover:drop-shadow-md bg-white gap-2 py-2">
+            <article className="flex flex-col items-start justify-between rounded-lg hover:drop-shadow-md bg-white gap-2 pb-2 max-h-100">
                 <Image
-                    src={product.image}
+                    src={product.thumbnail[0]}
                     alt={product.title}
                     width={300}
                     height={300}
-                    className="w-full rounded-t-sm"
+                    className="w-full rounded-t-lg"
                 />
+                {/* <ImageCarruosel images={product.images} /> */}
                 <div className="flex flex-nowrap flex-col items-start justify-between w-full px-3 gap-2">
-                    <h2 className="font-montserrat-medium text-lg">
+                    <h2 className="font-montserrat-medium text-base">
                         {product.title}
                     </h2>
                     <h2 className="font-montserrat-regular text-base">
                         {product.description.length > 60
-                            ? `${product.description.substring(0, 57)}...`
+                            ? `${product.description.substring(0, 45)}...`
                             : product.description}
                     </h2>
                     <h2 className="font-montserrat-medium text-lg">
                         $
-                        {product.discount > 0
-                            ? `${product.price * (product.discount / 100)}`
-                            : product.price}
+                        {discount > 0
+                            ? `${(product.price * (discount / 100)).toFixed(2)}`
+                            : product.price.toFixed(2)}
                     </h2>
-                    {product.discount > 0 && (
+                    {discount > 0 && (
                         <div className="flex flex-nowrap items-center justify-between">
                             <p className="text-gray-600 line-through font-montserrat-light text-xs mr-4">
                                 {`$${product.price}      `}
                             </p>
                             <p className="text-red-600 font-montserrat-light text-xs">
-                                {product.discount}% OFF
+                                {discount}% OFF
                             </p>
                         </div>
                     )}
                 </div>
 
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 p-2">
                     {Array.from({ length: 5 }, (_, index) => {
-                        if (index < Math.floor(product.stars)) {
+                        if (index < Math.floor(stars)) {
                             return (
                                 <Image
                                     key={index}
@@ -70,7 +66,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                                     height={24}
                                 />
                             );
-                        } else if (index < product.stars) {
+                        } else if (index < stars) {
                             return (
                                 <Image
                                     key={index}
@@ -92,9 +88,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                             );
                         }
                     })}
-                    <span className="ml-2 text-sm text-gray-600">
-                        {product.votes}
-                    </span>
+                    <span className="ml-2 text-sm text-gray-600">{votes}</span>
                 </div>
             </article>
         </Link>

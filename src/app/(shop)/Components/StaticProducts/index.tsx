@@ -1,18 +1,10 @@
 import React from "react";
 import ProductCard from "../ProductCard";
+import { Product } from "@/Interfaces/Product.interface";
 
 interface StaticProductsProps {
     productsQuantity: number;
-    products: {
-        id: number;
-        image: string;
-        title: string;
-        description: string;
-        price: number;
-        discount: number;
-        stars: number;
-        votes: number;
-    }[];
+    products: Product[];
 }
 
 const StaticProducts: React.FC<StaticProductsProps> = ({

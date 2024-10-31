@@ -9,7 +9,7 @@ export default function NavBarDynamic() {
     const { data: session } = useSession();
 
     return (
-        <div className="flex flex-nowrap justify-end items-center flex-grow-[1] gap-2 w-1/3 border-2 border-green-500">
+        <div className="flex flex-nowrap justify-end items-center flex-grow-[1] gap-2 w-1/3 ">
             {!session ? (
                 <Link
                     className="mr-2 text-gray-800 flex flex-nowrap"

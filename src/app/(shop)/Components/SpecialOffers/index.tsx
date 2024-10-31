@@ -11,7 +11,7 @@ const SpecialOffers: React.FC<SpecialOffersProps> = ({
 }: SpecialOffersProps) => {
     return (
         <Link
-            className="flex flex-nowrap shadow-lg shadow-gray-300 justify-center items-center w-full gap-14 py-3 rounded-md"
+            className="flex flex-nowrap shadow-lg shadow-gray-500 justify-center items-center w-full gap-14 py-3 rounded-md bg-white"
             href={link}
         >
             <Image

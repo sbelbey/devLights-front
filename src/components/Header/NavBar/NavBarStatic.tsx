@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function NavBarStatic() {
     return (
         <div className="flex flex-grow-[2] w-full">
-            <Link className="border-2 " href="/">
+            <Link className=" " href="/">
                 <Image
                     src={"icons/blue_cart_icon.svg"}
                     alt="Blue Cart Icon"
@@ -13,7 +13,7 @@ export default function NavBarStatic() {
                     height={100}
                 />
             </Link>
-            <div className="flex-grow-[4] mx-4 text-center border-2">
+            <div className="flex-grow-[4] mx-4 text-center ">
                 <input
                     type="text"
                     placeholder="Buscar..."
